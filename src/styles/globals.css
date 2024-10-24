@@ -1,3 +1,25 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+  /* Button */
+  .df-btn {
+    @apply bg-black text-white dark:bg-white dark:text-black;
+  }
+
+  /* Border */
+  .df-border {
+    @apply rounded-lg border-[0.5px] border-black/20 focus-within:ring-1 focus-within:ring-black/80 hover:border-black dark:border-white/20 dark:focus-within:ring-white/80 dark:hover:border-white/50;
+  }
+
+  /* Default: Shadow */
+  .df-shadow {
+    @apply shadow-lg focus-within:shadow-xl hover:shadow-xl;
+  }
+
+  /* Targeting: El textarea placeholder */
+  .df-target-textarea::placeholder {
+    @apply text-[16px] transition-colors duration-1000;
+  }
+}

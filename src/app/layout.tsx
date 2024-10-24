@@ -14,7 +14,12 @@ export default function RootLayout({ children }: { readonly children: ReactNode 
   return (
     <RecoilProvider>
       <html lang="ko">
-        <body className={cn("h-screen w-screen", inter_400.className)}>
+        <body
+          className={cn(
+            "h-screen w-screen bg-white transition-colors duration-1000 dark:bg-black",
+            inter_400.className
+          )}
+        >
           <NextThemesProvider>{children}</NextThemesProvider>
         </body>
       </html>
