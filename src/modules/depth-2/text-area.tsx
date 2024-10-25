@@ -1,13 +1,30 @@
 import { cn } from "@/libs/shadcn/utils";
 import { userInputValueRecoilAtom } from "@/utilities/recoil/atoms/no-storage";
+import { textAreaHeightRecoilAtom } from "@/utilities/recoil/atoms/no-storage";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TextareaAutosize from "react-textarea-autosize";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 
 export const TextArea = () => {
   const [userInputValue, setUserInputValue] = useRecoilState(userInputValueRecoilAtom);
+  const setTextAreaHeight = useSetRecoilState(textAreaHeightRecoilAtom);
   const [placeHR, setPlaceHR] = useState(false);
+  const [isTextSmall, setIsTextSmall] = useState(false);
+
+  useEffect(() => {
+    let timeout: ReturnType<typeof setTimeout>;
+
+    if (userInputValue.length >= 500) {
+      timeout = setTimeout(() => {
+        setIsTextSmall(true);
+      }, 1000);
+    } else {
+      setIsTextSmall(false);
+    }
+
+    return () => clearTimeout(timeout);
+  }, [userInputValue]);
 
   return (
     <div>
@@ -19,15 +36,19 @@ export const TextArea = () => {
         maxLength={1000}
         onHeightChange={(e) => {
           e !== 56 ? setPlaceHR(true) : setPlaceHR(false);
+
+          setTextAreaHeight(e);
         }}
         value={userInputValue}
-        onChange={(e) => setUserInputValue(e.target.value)}
+        onChange={(e) => {
+          setUserInputValue(e.target.value);
+        }}
         className={cn(
-          `df-target-textarea max-h-[70vh] w-full resize-none overflow-scroll bg-white py-4
+          `df-target-textarea max-h-[68vh] w-full resize-none overflow-scroll bg-white py-4
 outline-none transition-colors duration-1000 placeholder:text-black/30 dark:bg-black
 dark:text-white dark:placeholder:text-white/30`,
           userInputValue.length === 0 && "h-[56px]",
-          userInputValue.length >= 500 && "text-sm"
+          isTextSmall && "text-sm"
         )}
       />
       {placeHR && <hr className="mb-2 border-[0.5px] border-black/20 dark:border-white/20" />}

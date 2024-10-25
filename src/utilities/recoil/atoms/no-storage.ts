@@ -14,3 +14,8 @@ export const invalidInputRecoilAtom = atom({
   key: "invalidInputRecoilAtom",
   default: false
 });
+
+export const textAreaHeightRecoilAtom = atom({
+  key: "textAreaHeightRecoilAtom",
+  default: 56
+});

@@ -21,7 +21,7 @@ export const TranslateBtn = () => {
           if (userInputValue.length < 10) {
             setTimeout(() => {
               setInvalidInput(false);
-            }, 2000);
+            }, 1000);
 
             setInvalidInput(true);
           }
