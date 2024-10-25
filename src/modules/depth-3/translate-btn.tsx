@@ -1,6 +1,6 @@
 import { cn } from "@/libs/shadcn/utils";
 import {
-  startTranslationRecoilAtom,
+  activeTranslationRecoilAtom,
   userInputValueRecoilAtom
 } from "@/utilities/recoil/atoms/no-storage";
 
@@ -9,19 +9,20 @@ import { useRecoilState, useRecoilValue } from "recoil";
 
 export const TranslateBtn = () => {
   const userInputValue = useRecoilValue(userInputValueRecoilAtom);
-  const [startTranslation, setStartTranslation] = useRecoilState(startTranslationRecoilAtom);
+  const [activeTranslation, setActiveTranslation] = useRecoilState(
+    activeTranslationRecoilAtom
+  );
   const [invalidInput, setInvalidInput] = useState(false);
 
   return (
-    <div className={cn("flex min-w-fit gap-4", startTranslation ? "min-w-fit" : "min-w-fit")}>
+    <div className="flex min-w-fit gap-4">
       <button
         onClick={() => {
-          userInputValue.length >= 10 && setStartTranslation(!startTranslation);
-
-          if (userInputValue.length < 10 && startTranslation) {
-            setStartTranslation(false);
-
-            return;
+          if (activeTranslation && activeTranslation === "Initial value") {
+            setActiveTranslation(true);
+          } else {
+            setActiveTranslation(!activeTranslation);
+            console.log(activeTranslation);
           }
 
           if (userInputValue.length < 10) {
@@ -33,13 +34,15 @@ export const TranslateBtn = () => {
           }
         }}
         className={cn(
-          `min-w-fit rounded-lg bg-black px-2 py-[2px] text-white transition-colors
-duration-300 hover:bg-black/50 dark:bg-white dark:text-black dark:hover:bg-white/50`,
-          startTranslation && "duration-1500 !bg-yellow text-black",
+          `min-w-fit rounded-lg bg-black px-2 py-[2px] text-white transition-all duration-300
+hover:bg-black/50 dark:bg-white dark:text-black dark:hover:bg-white/50`,
+          activeTranslation !== "Initial value" && activeTranslation === true
+            ? "!bg-yellow text-black"
+            : "",
           invalidInput && "!bg-red !text-white"
         )}
       >
-        {startTranslation ? "취소" : "번역"}
+        {activeTranslation !== "Initial value" && activeTranslation === true ? "취소" : "번역"}
       </button>
     </div>
   );

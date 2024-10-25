@@ -1,32 +1,16 @@
 import { cn } from "@/libs/shadcn/utils";
-import {
-  startTranslationRecoilAtom,
-  userInputValueRecoilAtom
-} from "@/utilities/recoil/atoms/no-storage";
+import { userInputValueRecoilAtom } from "@/utilities/recoil/atoms/no-storage";
 
 import * as Progress from "@radix-ui/react-progress";
-import { AnimatePresence, motion } from "framer-motion";
-import { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
 
 export const ProgressBar = () => {
   const userInputValue = useRecoilValue(userInputValueRecoilAtom);
-  const startTranslation = useRecoilValue(startTranslationRecoilAtom);
-  const [invalidInput, setInvalidInput] = useState(false);
-  const [transitionDelay, setTransitionDelay] = useState(0);
   const len = userInputValue.length;
-
-  useEffect(() => {
-    setTransitionDelay(startTranslation ? 0 : 1.5);
-  }, [startTranslation]);
 
   return (
     <div className="flex h-full w-full items-center gap-8">
-      <motion.div
-        animate={{ width: startTranslation ? "80%" : "100%" }}
-        transition={{ duration: 1.5 }}
-        className="flex h-full w-full items-center"
-      >
+      <div className="flex h-full w-full items-center">
         <span
           className="w-[30px] text-xs text-black transition-colors duration-1000
 dark:text-white"
@@ -59,34 +43,7 @@ dark:text-white"
         >
           1000
         </span>
-      </motion.div>
-      <AnimatePresence>
-        {startTranslation && (
-          <motion.button
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ delay: transitionDelay, duration: 0.3 }}
-            onClick={() => {
-              if (userInputValue.length < 10) {
-                setTimeout(() => {
-                  setInvalidInput(false);
-                }, 1000);
-
-                setInvalidInput(true);
-              }
-            }}
-            className={cn(
-              `absolute right-[90px] min-w-[80px] rounded-lg bg-black px-2 py-[2px] text-white
-hover:bg-black/50 dark:bg-white dark:text-black dark:hover:bg-white/50`,
-              invalidInput && "!bg-red !text-white"
-              // startTranslation && "duration-1500 !bg-yellow text-black"
-            )}
-          >
-            다시 번역
-          </motion.button>
-        )}
-      </AnimatePresence>
+      </div>
     </div>
   );
 };

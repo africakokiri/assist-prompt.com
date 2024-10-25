@@ -5,12 +5,12 @@ export const userInputValueRecoilAtom = atom({
   default: ""
 });
 
-export const startTranslationRecoilAtom = atom({
-  key: "startTranslationRecoilAtom",
-  default: false
-});
-
 export const textAreaHeightRecoilAtom = atom({
   key: "textAreaHeightRecoilAtom",
   default: 56
+});
+
+export const activeTranslationRecoilAtom = atom({
+  key: "activeTranslationRecoilAtom",
+  default: "Initial value" as any
 });
