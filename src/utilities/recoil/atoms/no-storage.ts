@@ -12,5 +12,5 @@ export const textAreaHeightRecoilAtom = atom({
 
 export const activeTranslationRecoilAtom = atom({
   key: "activeTranslationRecoilAtom",
-  default: "Initial value" as any
+  default: false
 });

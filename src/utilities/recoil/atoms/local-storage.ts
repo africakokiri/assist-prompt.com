@@ -11,3 +11,8 @@ export const selectedLangRecoilAtom = atom({
   default: { id: 1, name: "영어", code: "en" },
   effects_UNSTABLE: [persistAtom]
 });
+
+export const selectedAiNamesRecoilAtom = atom({
+  key: "selectedAiNamesRecoilAtom",
+  default: ["Chat-GPT", "Gemini", "Claude"]
+});

@@ -18,12 +18,7 @@ export const TranslateBtn = () => {
     <div className="flex min-w-fit gap-4">
       <button
         onClick={() => {
-          if (activeTranslation && activeTranslation === "Initial value") {
-            setActiveTranslation(true);
-          } else {
-            setActiveTranslation(!activeTranslation);
-            console.log(activeTranslation);
-          }
+          userInputValue.length >= 10 && setActiveTranslation(!activeTranslation);
 
           if (userInputValue.length < 10) {
             setTimeout(() => {
@@ -34,15 +29,13 @@ export const TranslateBtn = () => {
           }
         }}
         className={cn(
-          `min-w-fit rounded-lg bg-black px-2 py-[2px] text-white transition-all duration-300
-hover:bg-black/50 dark:bg-white dark:text-black dark:hover:bg-white/50`,
-          activeTranslation !== "Initial value" && activeTranslation === true
-            ? "!bg-yellow text-black"
-            : "",
+          `min-w-fit rounded-lg bg-black px-2 py-[2px] text-white outline-none transition-all
+duration-300 hover:bg-black/50 dark:bg-white dark:text-black dark:hover:bg-white/50`,
+          activeTranslation && "!bg-yellow text-black hover:!bg-yellow/50",
           invalidInput && "!bg-red !text-white"
         )}
       >
-        {activeTranslation !== "Initial value" && activeTranslation === true ? "취소" : "번역"}
+        {activeTranslation ? "중지" : "번역"}
       </button>
     </div>
   );
