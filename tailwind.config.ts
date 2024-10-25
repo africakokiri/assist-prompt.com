@@ -14,6 +14,9 @@ const config: Config = {
         red: "hsl(0, 84.2%, 60.2%)",
         yellow: "hsl(45.39999999999998, 93.4%, 47.5%)",
         green: "hsl(142.10000000000002, 70.6%, 45.3%)"
+      },
+      transitionDuration: {
+        "1500": "1500ms"
       }
     }
   },

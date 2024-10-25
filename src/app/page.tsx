@@ -12,16 +12,17 @@ export default function MainPage() {
   const startTranslation = useRecoilValue(startTranslationRecoilAtom);
 
   return (
-    <main className="relative flex h-full w-full justify-around">
+    <main className="relative flex h-full w-full justify-center">
       <motion.section
-        animate={{ translateX: startTranslation ? "-45%" : "0" }}
+        animate={{ translateX: startTranslation ? "-55%" : "0" }}
         transition={{ duration: 1.5, ease: [0.42, 0, 0.3, 1] }}
-        className="absolute flex h-full min-w-[45%] flex-col items-center justify-center"
+        className="absolute flex h-full w-[45%] min-w-[420px] flex-col items-center
+justify-center"
       >
         <Logo />
         <InputDepth1 />
       </motion.section>
-      <motion.section
+      {/* <motion.section
         initial={{ opacity: 0, translateX: "50%" }}
         animate={{ opacity: startTranslation ? 1 : 0 }}
         transition={{
@@ -31,7 +32,7 @@ export default function MainPage() {
         className="min-w-2/5 absolute flex h-full justify-center border-2 border-white"
       >
         <OutputDepth1 />
-      </motion.section>
+      </motion.section> */}
     </main>
   );
 }

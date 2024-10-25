@@ -44,9 +44,13 @@ export const TextArea = () => {
           setUserInputValue(e.target.value);
         }}
         className={cn(
-          `df-target-textarea max-h-[68vh] w-full resize-none overflow-scroll bg-white py-4
-outline-none transition-colors duration-1000 placeholder:text-black/30 dark:bg-black
-dark:text-white dark:placeholder:text-white/30`,
+          `df-target-textarea dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500"> ...
+max-h-[80vh] w-full resize-none overflow-y-auto bg-white py-4 outline-none transition-colors
+duration-1000 placeholder:text-black/30 dark:bg-black dark:text-white
+dark:placeholder:text-white/30 [&::-webkit-scrollbar-thumb]:rounded-full
+[&::-webkit-scrollbar-thumb]:bg-gray-300 [&::-webkit-scrollbar-track]:rounded-full
+[&::-webkit-scrollbar-track]:bg-gray-100 dark:[&::-webkit-scrollbar-track]:bg-neutral-700
+[&::-webkit-scrollbar]:w-2`,
           userInputValue.length === 0 && "h-[56px]",
           isTextSmall && "text-sm"
         )}

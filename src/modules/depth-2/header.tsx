@@ -32,19 +32,18 @@ export const Header = () => {
           onClick={() => {
             theme === "dark" ? setTheme("light") : setTheme("dark");
           }}
-          className="transition-colors duration-1000 dark:invert"
+          className="dark:invert"
         >
           <SunIcon />
         </motion.button>
       ) : (
         <motion.button
-          initial={{ rotate: 180 }}
+          initial={{ rotate: -180 }}
           animate={{ rotate: 0 }}
           transition={{ duration: 1 }}
           onClick={() => {
             theme === "dark" ? setTheme("light") : setTheme("dark");
           }}
-          className="transition-colors duration-1000"
         >
           <MoonIcon />
         </motion.button>
@@ -62,8 +61,9 @@ duration-1000 *:px-2 dark:text-white"
             <li key={id}>
               <button
                 className={cn(
-                  "rounded-lg px-2 py-[2px]",
-                  index === selectedLang.id && "df-btn duration-300"
+                  "rounded-lg px-2 py-[2px] hover:bg-black/10 dark:hover:bg-white/20",
+                  index === selectedLang.id &&
+                    "df-btn duration-300 hover:!bg-black/50 dark:hover:!bg-white/50"
                 )}
                 onClick={() => {
                   setSelectedLang({ id, name, code });
