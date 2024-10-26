@@ -1,0 +1,18 @@
+===== Mtok ====
+
+
+
+- OpenAI(https://openai.com/api/pricing/)
+gpt-4o-mini: 0.15
+gpt-4o-mini Batches API: 0.075
+
+
+
+- Google(https://ai.google.dev/pricing?hl=ko#1_5flash)
+Gemini 1.5 flash: FREE
+
+
+
+- Anthropic(https://www.anthropic.com/pricing#anthropic-api)
+Claude 3.5 Haiku: 0.25
+Claude 3.5 Haiku Batches API: 0.125

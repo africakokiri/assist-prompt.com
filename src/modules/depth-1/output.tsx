@@ -42,8 +42,8 @@ dark:text-white"
               <button
                 className={cn(
                   "flex max-w-fit items-center gap-1 border-b-4 pb-1 text-xs",
-                  selectedAiNames.includes(name) ? `border-${name}` : "border-black/10",
-                  name === "Chat-GPT" && "dark:border-b-white"
+                  selectedAiNames.includes(name) ? `border-${name} ` : "border-black/10",
+                  name === "Chat-GPT" && "border-b-black dark:border-b-white"
                 )}
                 onClick={() => {
                   const copiedSelectedAiNames = [...selectedAiNames];
